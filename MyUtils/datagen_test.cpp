@@ -2,7 +2,7 @@
 #include "datagen.h"
 
 int main() {
-	using T = ui;
+	using T = double;
 	const ui n = 100;
 	T* d = new T[n];
 	

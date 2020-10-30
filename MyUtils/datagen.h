@@ -35,16 +35,16 @@ namespace datagen {
 		double alpha = 1, beta = 7;
 		ui64 sum = 0, keys = 0, y = 889;
 		ui64 maxF = 0;
-		ui64 ceiling = 100000;
+		double ceiling = 100000;
 		FOR(i, n, 1) {
 			x = x * a + c;
 			y = y * a + c;
 			// generate frequency from the Pareto distribution with alpha=1; otherwise, the generator gets slow
 			double u = (double)y / ((double)(1LLU << 63) * 2);				// uniform [0,1]
-			ui64 f = std::min<double>(ceil(beta * (1 / (1 - u) - 1)), ceiling);		// rounded-up Pareto
+			double f = std::min<double>(ceil(beta * (1 / (1 - u) - 1)), ceiling);		// rounded-up Pareto
 			
 			if constexpr (std::is_same<Item, char>::value || std::is_same<Item, uchar>::value)
-				A[i] = 'a' + (f % 26);
+				A[i] = 'a' + ((ui64)f % 26);
 			else A[i] = f;
 		}
 	}
